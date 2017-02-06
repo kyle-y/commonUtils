@@ -1,5 +1,6 @@
 package com.example.administrator.common.commonUtils;
 
+import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -12,6 +13,8 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.RSAPrivateKeySpec;
+import java.security.spec.RSAPublicKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 import javax.crypto.BadPaddingException;
@@ -98,6 +101,48 @@ public class EncryptUtils {
         byte[] privateKey = keyPair.getPrivate().getEncoded();
         ret = CommonUtils.Base64Encode(privateKey);
         return ret;
+    }
+
+    /**
+     * 通过N，e获取公钥
+     * @param modulus   p*q的值
+     * @param exponent  公钥的e值
+     * @return
+     */
+    public static PublicKey getPublicKey(String modulus, String exponent) {
+        try {
+            byte[] m = CommonUtils.Base64Decode(modulus);
+            byte[] e = CommonUtils.Base64Decode(exponent);
+            BigInteger b1 = new BigInteger(1, m);
+            BigInteger b2 = new BigInteger(1, e);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            RSAPublicKeySpec keySpec = new RSAPublicKeySpec(b1, b2);
+            return keyFactory.generatePublic(keySpec);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 通过N，e获取私钥
+     * @param modulus   p*q的值
+     * @param exponent  私钥的e值
+     * @return
+     */
+    public static PrivateKey getPrivateKey(String modulus, String exponent) {
+        try {
+            byte[] m = CommonUtils.Base64Decode(modulus);
+            byte[] e = CommonUtils.Base64Decode(exponent);
+            BigInteger b1 = new BigInteger(1, m);
+            BigInteger b2 = new BigInteger(1, e);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            RSAPrivateKeySpec keySpec = new RSAPrivateKeySpec(b1, b2);
+            return keyFactory.generatePrivate(keySpec);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
