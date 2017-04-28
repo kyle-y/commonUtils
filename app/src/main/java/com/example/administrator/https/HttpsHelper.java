@@ -1,10 +1,20 @@
 package com.example.administrator.https;
 
+import android.content.Context;
+
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+
 import java.io.IOException;
 import java.io.InputStream;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
 
 /**
  * Created by Administrator on 2017/4/28.
@@ -13,6 +23,7 @@ import javax.net.ssl.SSLSession;
 public class HttpsHelper {
     /**
      * 获取证书参数信息,供okhttp使用
+     *
      * @param bksFile
      * @param password
      * @param certificates
@@ -42,5 +53,24 @@ public class HttpsHelper {
         public boolean verify(String hostname, SSLSession session) {
             return true;//自行添加判断逻辑，true->Safe，false->unsafe
         }
+    }
+
+    /**
+     * 用于volley的httpsqueue
+     *
+     * @param context
+     * @param bksFile
+     * @param password
+     * @param certificates
+     * @return
+     */
+    public RequestQueue getRequestQueueWithSSL(Context context, InputStream bksFile, String password, InputStream... certificates) {
+        HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(bksFile, password, certificates);
+        SSLSocketFactory sslSocketFactory = sslParams.sSLSocketFactory;
+        Cache cache = new DiskBasedCache(context.getCacheDir(), 1024 * 1024);
+        Network network = new BasicNetwork(new HurlStack(null, sslSocketFactory));
+        RequestQueue queue = new RequestQueue(cache, network);
+        queue.start();
+        return queue;
     }
 }
