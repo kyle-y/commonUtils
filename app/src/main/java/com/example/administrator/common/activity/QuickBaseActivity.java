@@ -22,10 +22,12 @@ public abstract class QuickBaseActivity extends AppCompatActivity implements Vie
         app = QuickBaseApplication.fromContext(this);
         app.pushActivity(this);
 //        EventBus.getDefault().register(this); //事件总线程注册
+        setContentView(setLayoutId());
         initData();
         initView();
     }
 
+    protected abstract int setLayoutId();
     protected abstract void initData();
     protected abstract void initView();
 
