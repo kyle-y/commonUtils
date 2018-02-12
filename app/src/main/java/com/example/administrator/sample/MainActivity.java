@@ -1,4 +1,4 @@
-package com.example.administrator.demo;
+package com.example.administrator.sample;
 
 import android.widget.ImageView;
 

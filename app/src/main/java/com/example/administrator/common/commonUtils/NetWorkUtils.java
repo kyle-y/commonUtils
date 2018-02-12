@@ -80,7 +80,7 @@ public class NetWorkUtils {
         return result;
     }
 
-    public static String getMobileNetType(NetworkInfo networkInfo){
+    public static String getMobileNetType(NetworkInfo networkInfo) {
         String result = null;
         String subtypeName = networkInfo.getSubtypeName();
         showLog(subtypeName);
@@ -102,16 +102,16 @@ public class NetWorkUtils {
                 result = "2G网络";
                 break;
             case 5:
-                result = "3G网络";
             case 6:
+                result = "3G网络";
                 break;
             case 7:
                 result = "2G网络";
                 break;
             case 8:
-                result = "3G网络";
             case 9:
             case 10:
+                result = "3G网络";
                 break;
             case 11:
                 result = "2G网络";
@@ -121,8 +121,8 @@ public class NetWorkUtils {
                 break;
             case 13:
             case 14:
-                result = "3G网络";
             case 15:
+                result = "3G网络";
                 break;
             case 16:
                 result = "2G网络";
@@ -132,6 +132,9 @@ public class NetWorkUtils {
                 break;
             case 18:
                 result = "IWLAN网络";
+                break;
+            default:
+                result = "无网络";
                 break;
         }
         return result;

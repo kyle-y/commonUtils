@@ -1,4 +1,4 @@
-package com.example.administrator.demo;
+package com.example.administrator.sample;
 
 import com.example.administrator.common.application.QuickBaseApplication;
 import com.example.administrator.imageLoad.ImageLoader;
