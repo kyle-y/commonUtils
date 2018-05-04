@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.jyibb.lib_common.other_libs.photo_selector.view.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#232323">
+
+    <com.jyibb.lib_common.other_libs.photo_selector.view.SquaredImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside" />
+
+    <ImageView
+        android:id="@+id/checkmark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:layout_marginRight="5.5dp"
+        android:layout_marginTop="5.5dp"
+        android:background="#fdc400"
+        android:scaleType="centerInside"
+        android:src="@mipmap/ic_checked" />
+
+</com.jyibb.lib_common.other_libs.photo_selector.view.SquareFrameLayout>

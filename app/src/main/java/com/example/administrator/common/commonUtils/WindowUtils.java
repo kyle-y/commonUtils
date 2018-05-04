@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
  * Created by Administrator on 2017/1/14.
  */
 
-public class WindowUrils {
+public class WindowUtils {
 
     /**
      * 获取状态栏高度

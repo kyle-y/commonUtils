@@ -13,10 +13,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Created by Administrator on 2017/6/14.
+ * /**
+ * 检查是否是模拟器
+ * @return
  */
 
 public class PhoneUtils {
+
     public static boolean isMonitor(Context context) {
         if (getIMIEStatus(context).equals("000000")) {
             return true;
