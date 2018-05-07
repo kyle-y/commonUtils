@@ -34,4 +34,5 @@
     <style name="dialog" parent="style_dialog">
         <item name="android:background">@android:color/transparent</item>
     </style>
+
 </resources>
